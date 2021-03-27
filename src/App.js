@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import InvoiceDetails from "./components/InvoiceDetails";
+import InvoiceForm from "./components/InvoiceForm";
+import About from './pages/About'
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <Link to="/"> Dashboard</Link>
+        <Link to="/about"> About</Link>
+        <Link to="/new"> Create Invoice</Link>
+        <Switch>
+        <Route exact path="/" >
+              <Dashboard/>
+        </Route>
+        <Route exact path="/about">
+              <About/>
+        </Route>
+        <Route exact path="/new">
+              <InvoiceForm/>
+        </Route>
+        <Route exact path="/:id">
+              <InvoiceDetails/>
+        </Route>
+        </Switch>
+       </div>
+    </Router>
   );
 }
+/*/
+function Home() {
+  return <h2>Home</h2>;
+}
 
-export default App;
+/*function About() {
+  return <h2>About</h2>;
+}*/
+/*
+function Users() {
+  return <h2>Users</h2>;
+}*/
